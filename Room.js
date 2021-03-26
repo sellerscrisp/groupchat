@@ -51,6 +51,12 @@ class Room {
       member.send(JSON.stringify(data));
     }
   }
+
+  /** show joke to only the current member */
+
+  show(data, member) {
+    member.send(JSON.stringify(data));
+  }
 }
 
 module.exports = Room;

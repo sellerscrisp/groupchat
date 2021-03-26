@@ -3,7 +3,6 @@
 const urlParts = document.URL.split("/");
 const roomName = urlParts[urlParts.length - 1];
 const ws = new WebSocket(`ws://localhost:3000/chat/${roomName}`);
-const Room = require('../../Room');
 
 
 const name = prompt("Username?");
@@ -31,6 +30,8 @@ ws.onmessage = function(evt) {
     item = $(`<li><i>${msg.text}</i></li>`);
   } else if (msg.type === "chat") {
     item = $(`<li><b>${msg.name}: </b>${msg.text}</li>`);
+  } else if (msg.type === "members") {
+    item = $(`<li><b>${msg.name}: </b>${msg.text}</li>`)
   } else {
     return console.error(`bad message: ${msg}`);
   }
@@ -57,10 +58,15 @@ ws.onclose = function(evt) {
 
 $('form').submit(function(evt) {
   evt.preventDefault();
-
-  let data = { type: "chat", text: $("#m").val() };
+  let data;
+  if ($("#m").val() === "/joke") {
+    data = { type: "get-joke" };
+  } else if ($("#m").val() === "/members") {
+    data = { type: "get-members" };
+  } else {
+    data = { type: "chat", text: $("#m").val() };
+  }
   ws.send(JSON.stringify(data));
 
   $('#m').val('');
-
 });

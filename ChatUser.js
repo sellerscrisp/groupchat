@@ -47,6 +47,25 @@ class ChatUser {
     });
   }
 
+  handleJoke() {
+    this.room.show({
+        type: 'chat',
+        text: "Why won't the Republicans impeach Trump? Because they insist on carrying a baby to full term.",
+        name: "Server"
+      },
+      this)
+  }
+
+  handleMembers() {
+    let members = Array.from(this.room.members);
+    let names = members.map(m => m.name);
+    this.room.show({
+      type: 'chat',
+      text: `Members: ${names.join(", ")}`,
+      name: "Server"
+    }, this)
+  }
+
   /** Handle messages from client:
    *
    * - {type: "join", name: username} : join
@@ -58,6 +77,8 @@ class ChatUser {
 
     if (msg.type === 'join') this.handleJoin(msg.name);
     else if (msg.type === 'chat') this.handleChat(msg.text);
+    else if (msg.type === 'get-joke') this.handleJoke();
+    else if (msg.type === 'get-members') this.handleMembers();
     else throw new Error(`bad message: ${msg.type}`);
   }
 
