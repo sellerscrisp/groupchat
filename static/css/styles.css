@@ -5,42 +5,95 @@
 }
 
 body {
-  font: 13px Helvetica, Arial;
+  font: 20px Helvetica, Arial;
+  background-color: #303030;
 }
 
-form {
-  background: black;
-  position: fixed;
+.container form {
+  background: transparent;
+  width: 90%;
+  position: absolute;
   bottom: 0;
-  width: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  /* transform: scale(1.00); */
+  transition: top 0.15s ease-out, transform 0.15s ease-out 0.25s;
 }
 
-form input {
+.container form:hover {
+  /* transform: scale(1.05); */
+  transition: top 0.15s ease-out, transform 0.15s ease-out 0.25s;
+}
+
+.container form input {
   padding: 10px;
   width: 85%;
   margin: 2px 0;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  background-color: #303030;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.15s ease-in;
 }
 
-form button {
+.container form input:hover {
+  background-color: #444444;
+  transition: all 0.15s ease-out;
+}
+
+.container form input:focus {
+  transform: scale(1.05);
+}
+
+.container form:focus {
+  transform: scale(1.05);
+}
+
+
+
+
+.container form button {
   float: right;
-  background-color: tomato;
-  border: none;
-  border-radius: 5px;
-  padding: 1em 0;
+  background-color: #570057;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  padding: 10px;
   width: 14%;
   margin: 3px 0;
 }
 
-#messages {
+.container #messages {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-#messages li {
+.container #messages li {
   padding: 5px 10px;
 }
 
-#messages li:nth-child(odd) {
-  background: #eee;
+.container #messages li:nth-child(odd) {
+  background: #005d8b;
+}
+
+.container {
+  margin-top: 100px;
+  position: absolute;
+  height: 400px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  /* bottom: 0; */
+  left: 0;
+  width: 50%;
+  /* height: 75%; */
+  background-color: #0088cc;
+  box-shadow: 0px 0px 100px 0px #000;
+  overflow: auto;
+  border: 1px solid #fff;
+  border-radius: 15px;
 }
